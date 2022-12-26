@@ -7,9 +7,12 @@ public class App {
         sll.add("четвертый");
         sll.add("пятый");
 
-        System.out.println(sll.size());
+        System.out.println(sll.size() + " ");
+        
+        System.out.println(sll.getItemByIndex(0));
         for (Object item : sll) {
             System.out.println(item);
         }
+
     }
 }

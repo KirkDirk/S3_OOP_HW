@@ -2,15 +2,15 @@ import java.util.Iterator;
 
 public class SomeLinkedList<E> implements Iterable<E>{
 
-    private Node<E> node = null;
-    private Node<E> nodeFirst = null;
-    private Node<E> nodeLast = null;
+    //private Node<E> node;
+    private Node<E> nodeFirst;
+    private Node<E> nodeLast;
     private int sizeList = 0;
     
     private class Node<E> {
         private E item;
-        Node<E> prev;
-        Node<E> next;
+        private Node<E> prev;
+        private Node<E> next;
         
         public Node(E item, Node<E> prev, Node<E> next) {
             this.item = item;
@@ -44,27 +44,43 @@ public class SomeLinkedList<E> implements Iterable<E>{
     }
 
     public SomeLinkedList() {
-        node = new Node<E>(null, null, null);
-        nodeFirst = new Node<E>(null, nodeLast, null);
-        nodeLast = new Node<E>(null, null, nodeFirst);
+        //node = new Node<E>(null, null, null);
+        nodeFirst = new Node<E>(null, null, nodeLast);
+        nodeLast = new Node<E>(null, nodeFirst, null);
     }
 
-    public void add(E e){
-        node.setItem(e);
-        nodeLast.setPrev(node);
+    public void add(E el){
+        Node<E> node = nodeLast; 
+        node.setItem(el);
+        nodeLast = new Node<E>(null, node, null);
         nodeFirst.setNext(node);
         node.setNext(nodeLast);
-        node.setPrev(nodeFirst);
-        nodeFirst = new Node<E>(null, nodeLast, node);
+        //node.setPrev(nodeFirst);
+        //System.out.println(node.getItem() + " " + nodeLast.getPrev().getItem() + " " + nodeFirst.getNext().getItem() + " " + node.getNext().getItem()+ " " + node.getPrev().getItem());
+        //nodeFirst = new Node<E>(null, null, node);
+        //System.out.println(nodeFirst.getNext());
         
         sizeList ++;        
-        System.out.println("prev:" + nodeFirst.prev.getItem());
-        System.out.println("item:" + node.getItem());
-        System.out.println("next:" + nodeFirst.next.getItem());
+        // System.out.println("prev:" + node.getPrev().getItem());
+        // System.out.println("item:" + node.getItem());
+        // System.out.println("next:" + node.getNext().getItem());
     }
 
     public int size(){
         return sizeList;
+    }
+
+    public E getItemByIndex(int counter){
+        Node<E> getItem = nodeFirst.getNext();
+        //System.out.println(nodeFirst.getNext().getItem());
+        for (int i = 0; i < counter; i++) {
+            getItem = getNextItem(getItem);
+        }
+        return getItem.getItem();
+    }
+
+    private Node<E> getNextItem(Node<E> element){
+        return element.getNext();
     }
 
     @Override
@@ -78,8 +94,7 @@ public class SomeLinkedList<E> implements Iterable<E>{
 
             @Override
             public E next() {
-                index++;
-                return node.getItem();
+                return getItemByIndex(index++);
             }
             
         };
