@@ -9,10 +9,11 @@ public class App {
 
         System.out.println(sll.size() + " ");
         
-        System.out.println(sll.getItemByIndex(0));
         for (Object item : sll) {
             System.out.println(item);
         }
 
+        System.out.println(sll.getItemByIndex(3));
+        
     }
 }

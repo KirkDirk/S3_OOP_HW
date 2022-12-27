@@ -2,7 +2,6 @@ import java.util.Iterator;
 
 public class SomeLinkedList<E> implements Iterable<E>{
 
-    //private Node<E> node;
     private Node<E> nodeFirst;
     private Node<E> nodeLast;
     private int sizeList = 0;
@@ -44,26 +43,18 @@ public class SomeLinkedList<E> implements Iterable<E>{
     }
 
     public SomeLinkedList() {
-        //node = new Node<E>(null, null, null);
-        nodeFirst = new Node<E>(null, null, nodeLast);
         nodeLast = new Node<E>(null, nodeFirst, null);
+        nodeFirst = new Node<E>(null, null, nodeLast);
+        
     }
 
     public void add(E el){
         Node<E> node = nodeLast; 
         node.setItem(el);
         nodeLast = new Node<E>(null, node, null);
-        nodeFirst.setNext(node);
         node.setNext(nodeLast);
-        //node.setPrev(nodeFirst);
-        //System.out.println(node.getItem() + " " + nodeLast.getPrev().getItem() + " " + nodeFirst.getNext().getItem() + " " + node.getNext().getItem()+ " " + node.getPrev().getItem());
-        //nodeFirst = new Node<E>(null, null, node);
-        //System.out.println(nodeFirst.getNext());
-        
+                
         sizeList ++;        
-        // System.out.println("prev:" + node.getPrev().getItem());
-        // System.out.println("item:" + node.getItem());
-        // System.out.println("next:" + node.getNext().getItem());
     }
 
     public int size(){
@@ -72,7 +63,6 @@ public class SomeLinkedList<E> implements Iterable<E>{
 
     public E getItemByIndex(int counter){
         Node<E> getItem = nodeFirst.getNext();
-        //System.out.println(nodeFirst.getNext().getItem());
         for (int i = 0; i < counter; i++) {
             getItem = getNextItem(getItem);
         }
