@@ -6,6 +6,7 @@ public class App {
         sll.add("третий");
         sll.add("четвертый");
         sll.add("пятый");
+        sll.add("шестой");
 
         System.out.println(sll.size() + " ");
         
@@ -13,7 +14,11 @@ public class App {
             System.out.println(item);
         }
 
-        System.out.println(sll.getItemByIndex(3));
+        for (Object item : sll) {
+            System.out.print(item+ " ");
+        }
+        System.out.println();
+        System.out.println(sll.getItemByIndex(2));
         
     }
 }

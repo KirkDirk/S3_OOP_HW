@@ -5,7 +5,7 @@ public class SomeLinkedList<E> implements Iterable<E>{
     private Node<E> nodeFirst;
     private Node<E> nodeLast;
     private int sizeList = 0;
-    
+ 
     private class Node<E> {
         private E item;
         private Node<E> prev;
@@ -44,8 +44,7 @@ public class SomeLinkedList<E> implements Iterable<E>{
 
     public SomeLinkedList() {
         nodeLast = new Node<E>(null, nodeFirst, null);
-        nodeFirst = new Node<E>(null, null, nodeLast);
-        
+        nodeFirst = new Node<E>(null, null, nodeLast);   
     }
 
     public void add(E el){
@@ -77,6 +76,7 @@ public class SomeLinkedList<E> implements Iterable<E>{
     public Iterator<E> iterator() {
         return new Iterator<E>() {
             int index = 0;
+            Node<E> nodeCurrent = nodeFirst;
             @Override
             public boolean hasNext() {
                 return index<sizeList;
@@ -84,7 +84,9 @@ public class SomeLinkedList<E> implements Iterable<E>{
 
             @Override
             public E next() {
-                return getItemByIndex(index++);
+                index++;
+                nodeCurrent = nodeCurrent.getNext();
+                return nodeCurrent.getItem();
             }
             
         };
