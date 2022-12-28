@@ -87,10 +87,8 @@ public class SomeLinkedList<E> implements Iterable<E>{
                 index++;
                 nodeCurrent = nodeCurrent.getNext();
                 return nodeCurrent.getItem();
-            }
-            
+            }      
         };
-    }
-    
+    }    
 }
 
